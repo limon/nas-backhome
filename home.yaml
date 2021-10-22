@@ -1,0 +1,20 @@
+hosts:
+  'dsm': 192.168.1.100
+ 
+proxies:
+  - name: "ss-home"
+    type: ss
+    server: ddns.com
+    port: 10086
+    cipher: aes-128-gcm
+    password: "password"
+ 
+proxy-groups:
+  - name: "home"
+    type: select
+    proxies:
+      - ss-home
+      - DIRECT
+      
+rules:
+  - IP-CIDR,192.168.0.0/16,home
